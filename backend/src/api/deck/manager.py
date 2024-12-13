@@ -1,9 +1,11 @@
 from src.api.db.models.decks import Deck
+from src.api.db.models.cards import Card
 from src.api.deck.schemas import CreateDeck
 
 from sqlmodel import Session
 from sqlmodel import select
 
+from typing import List 
 
 class DeckManager:
 
@@ -45,4 +47,9 @@ class DeckManager:
         result = session.exec(statement).first()
         session.delete(result)
         session.commit()
+        return result
+    
+    def get_all_cards(self, deck_id:str, session:Session)->List[Card]:
+        statement = select(Card).where(Card.deck_id == deck_id)
+        result = session.exec(statement).all()
         return result

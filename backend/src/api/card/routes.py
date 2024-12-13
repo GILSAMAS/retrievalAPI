@@ -22,10 +22,13 @@ async def create_card(
 
 @card_router.get("/get/{card_id}")
 async def get_card(
-    card_id: str,
     session: Session = Depends(get_session),
     manager: CardManager = Depends(CardManager),
 ) -> Card:
+    
+    # analize the score of the card
+    # find the right card
+    card_id = "1"
     card = manager.get_card(card_id, session)
     return card
 
