@@ -6,7 +6,7 @@ from src.api.card.schemas import CreateCard
 from src.api.db.models.cards import Card
 from src.api.card.manager import CardManager
 
-card_router = APIRouter()
+card_router = APIRouter(tags=["Card"])
 
 
 # create a card

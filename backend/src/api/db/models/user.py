@@ -22,14 +22,3 @@ class User(SQLModel, table=True):
     
     def __repr__(self):
         return f"User {self.username}"
-    
-class StudentPerformance(SQLModel, table=True):
-    id: str = Field(default_factory=uuid.uuid4, primary_key=True)
-    user_id: uuid.UUID = Field(foreign_key="user.id")
-    
-    score: float
-    created_at: datetime = Field(default_factory=datetime.now)
-    updated_at: datetime = Field(default_factory=datetime.now)
-    
-    def __repr__(self):
-        return f"StudentPerformance {self.id}"

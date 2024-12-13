@@ -6,7 +6,7 @@ from sqlmodel import Session
 from sqlmodel import select
 
 from typing import List 
-
+import uuid
 class DeckManager:
 
     def create_deck(self, deck_data: CreateDeck, session: Session) -> Deck:
@@ -32,6 +32,7 @@ class DeckManager:
         :param session: Session: The database session
         :return: Deck: The deck
         """
+        deck_id = uuid.UUID(deck_id)
         statement = select(Deck).where(Deck.id == deck_id)
         result = session.exec(statement).first()
         return result

@@ -6,7 +6,7 @@ from src.api.deck.manager import DeckManager
 from src.api.deck.schemas import CreateDeck
 from src.api.db.models.decks import Deck
 
-deck_router = APIRouter()
+deck_router = APIRouter(tags=["Deck"])
 
 
 # create a deck
