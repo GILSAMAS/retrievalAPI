@@ -3,7 +3,6 @@ import os
 from typing import Dict
 from typing import Any
 
-
 def make_embedding_request(payload:Dict[str, Any]):
     url = os.environ.get("OPENAI_EMBEDDING_URL")
     api_key = os.environ.get("OPENAI_API_KEY")
