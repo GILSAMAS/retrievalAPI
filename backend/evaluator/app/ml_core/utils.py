@@ -1,23 +1,22 @@
-import requests 
-import os 
+import requests
+import os
 from typing import Dict
 from typing import Any
 
-def make_embedding_request(payload:Dict[str, Any]):
+
+def make_embedding_request(payload: Dict[str, Any]):
     url = os.environ.get("OPENAI_EMBEDDING_URL")
     api_key = os.environ.get("OPENAI_API_KEY")
 
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     response = requests.post(url=url, headers=headers, json=payload)
     if response.status_code != 200:
         print(response.text)
-        raise Exception("Error with the request") 
+        raise Exception("Error with the request")
     return response.json()
 
-def build_payload(text:str)->Dict[str, str]:
+
+def build_payload(text: str) -> Dict[str, str]:
     """
     Builds the payload for the request to the OpenAI API
 
@@ -35,5 +34,5 @@ def build_payload(text:str)->Dict[str, str]:
     return {
         "input": text,
         "model": "text-embedding-ada-002",
-        "encoding_format":"float",
+        "encoding_format": "float",
     }

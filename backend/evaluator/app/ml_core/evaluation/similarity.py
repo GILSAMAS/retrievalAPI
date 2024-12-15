@@ -1,8 +1,8 @@
-from typing import List 
+from typing import List
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-def calculate_cosine_similarity(vector1:List[float], vector2:List[float])->float:
+def calculate_cosine_similarity(vector1: List[float], vector2: List[float]) -> float:
     """
     Calculates the cosine similarity between two vectors
 
