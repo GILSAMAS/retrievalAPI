@@ -1,7 +1,7 @@
 from sqlmodel import Session
 from sqlmodel import select
 from app.schemas.decks import CreateDeck
-from app.models.deck import Deck
+from app.models.models import Deck
 
 
 class DeckManager:
