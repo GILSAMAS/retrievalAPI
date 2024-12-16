@@ -7,7 +7,6 @@ from app.models.models import Deck
 class DeckManager:
 
     def create_deck(self, deck_data: CreateDeck, session: Session) -> Deck:
-
         deck_data_dict = deck_data.model_dump()
         deck = Deck(**deck_data_dict)
 
