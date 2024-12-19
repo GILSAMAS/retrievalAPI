@@ -1,0 +1,48 @@
+.card-editor {
+    display: flex;
+    flex-direction: column;
+    width: 500px; /* Increased width */
+    margin: 20px auto; /* Added margin for spacing */
+    padding: 30px; /* Increased padding */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* Increased margin */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px; /* Increased margin */
+    font-size: 16px; /* Increased font size */
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px; /* Increased padding */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Increased font size */
+  }
+  
+  button {
+    padding: 12px; /* Increased padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; /* Increased font size */
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .ql-container {
+    height: 200px; /* Set a fixed height for the editor */
+  }
