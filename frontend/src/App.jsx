@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
-// import CardEditor from './Components/CardEditor/CardEditor.jsx';
-import DeckEditor from './Components/DeckEditor/DeckEditor.jsx';
+import React from 'react';
+import useFetch from './hooks/useFetch';
 import './App.css';
 
 function App() {
-  const [decks, setDecks] = useState([]);
+    const url = 'http://127.0.0.1:8000/v1/deck/list';
+    const { data: decks, loading, error } = useFetch(url);
 
-  const handleAddDeck = (deckName) => {
-    setDecks([...decks, { name: deckName, cards: [] }]);
-    console.log('Decks:', decks);
-  };
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
-  return (
-    <>
-      <DeckEditor onAddDeck={handleAddDeck} />
-    </>
-  );
+    return (
+        <>
+        <h1>Decks</h1>
+        {decks && decks.map((deck, index) => (
+            <div key={index}>
+            <h2>{deck.name}</h2>
+            <p>{deck.description}</p>
+            </div>
+        ))}
+        </>
+    );
 }
 
 export default App;
