@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAPI from '../../../hooks/useAPI';
 import DeckEditor from '../../DeckEditor/DeckEditor';
 import CardEditor from '../../CardEditor/CardEditor';
@@ -9,15 +9,34 @@ function Home() {
   const [selectedDeck, setSelectedDeck] = useState(null);
   const [showCardEditor, setShowCardEditor] = useState(false);
 
-  const { data: decks, loading: decksLoading, error: decksError } = useAPI({
-    url: 'http://127.0.0.1:8000/v1/deck/list',
-    method: 'GET'
-  }, true);
+  const {
+    data: decks,
+    loading: decksLoading,
+    error: decksError,
+    makeRequest: fetchDecks,
+  } = useAPI();
 
-  const { data: cards, loading: cardsLoading, error: cardsError } = useAPI({
-    method: 'GET',
-    url: selectedDeck ? `http://127.0.0.1:8000/v1/card/get_deck_cards/${selectedDeck.id}` : null
-  }, true);
+  const {
+    data: cards,
+    loading: cardsLoading,
+    error: cardsError,
+    makeRequest: fetchCards,
+  } = useAPI();
+
+  useEffect(() => {
+    // Fetch decks when the component is mounted
+    fetchDecks({ url: 'http://127.0.0.1:8000/v1/deck/list', method: 'GET' });
+  }, [fetchDecks]);
+
+  useEffect(() => {
+    if (selectedDeck) {
+      // Fetch cards for the selected deck
+      fetchCards({
+        method: 'GET',
+        url: `http://127.0.0.1:8000/v1/card/get_deck_cards/${selectedDeck.id}`,
+      });
+    }
+  }, [selectedDeck, fetchCards]);
 
   const handleDeckClick = (deck) => {
     setSelectedDeck(deck);
@@ -28,7 +47,7 @@ function Home() {
     // Add the new card to the selected deck's cards
     setSelectedDeck((prevDeck) => ({
       ...prevDeck,
-      cards: [...prevDeck.cards, card]
+      cards: [...prevDeck.cards, card],
     }));
   };
 
@@ -36,12 +55,17 @@ function Home() {
     <div>
       <h2>Available Decks</h2>
       <div className="deck-list">
-        {decks && decks.map((deck) => (
-          <div key={deck.id} className="deck-card" onClick={() => handleDeckClick(deck)}>
-            <h3>{deck.name}</h3>
-            <p>{deck.description}</p>
-          </div>
-        ))}
+        {decks &&
+          decks.map((deck) => (
+            <div
+              key={deck.id}
+              className="deck-card"
+              onClick={() => handleDeckClick(deck)}
+            >
+              <h3>{deck.name}</h3>
+              <p>{deck.description}</p>
+            </div>
+          ))}
       </div>
       {selectedDeck && (
         <div className="card-list">
@@ -55,8 +79,14 @@ function Home() {
           ) : cards && cards.length > 0 ? (
             cards.map((card) => (
               <div key={card.id} className="card">
-                <div className="card-front" dangerouslySetInnerHTML={{ __html: card.front }}></div>
-                <div className="card-back" dangerouslySetInnerHTML={{ __html: card.back }}></div>
+                <div
+                  className="card-front"
+                  dangerouslySetInnerHTML={{ __html: card.front }}
+                ></div>
+                <div
+                  className="card-back"
+                  dangerouslySetInnerHTML={{ __html: card.back }}
+                ></div>
               </div>
             ))
           ) : (
@@ -75,11 +105,10 @@ function Home() {
     </div>
   );
 
-
   const renderCreateDeck = () => (
     <div>
       <h2>Create Deck</h2>
-      <DeckEditor/>
+      <DeckEditor />
     </div>
   );
 
@@ -91,19 +120,31 @@ function Home() {
       <div className="options">
         <button
           className={selectedOption === 'Decks' ? 'active' : ''}
-          onClick={() => { setSelectedOption('Decks'); setSelectedDeck(null); setShowCardEditor(false); }}
+          onClick={() => {
+            setSelectedOption('Decks');
+            setSelectedDeck(null);
+            setShowCardEditor(false);
+          }}
         >
           Decks
         </button>
         <button
           className={selectedOption === 'Create Deck' ? 'active' : ''}
-          onClick={() => { setSelectedOption('Create Deck'); setSelectedDeck(null); setShowCardEditor(false); }}
+          onClick={() => {
+            setSelectedOption('Create Deck');
+            setSelectedDeck(null);
+            setShowCardEditor(false);
+          }}
         >
           Create Deck
         </button>
         <button
           className={selectedOption === 'Stats' ? 'active' : ''}
-          onClick={() => { setSelectedOption('Stats'); setSelectedDeck(null); setShowCardEditor(false); }}
+          onClick={() => {
+            setSelectedOption('Stats');
+            setSelectedDeck(null);
+            setShowCardEditor(false);
+          }}
         >
           Stats
         </button>

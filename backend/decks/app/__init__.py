@@ -12,9 +12,11 @@ def lifespan(app: FastAPI):
 
 version = "v1"
 app = FastAPI(version=version, lifespan=lifespan)
+origins = ['http://localhost:3000', 'http://localhost:5173']
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
