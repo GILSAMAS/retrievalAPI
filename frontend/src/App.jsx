@@ -1,25 +1,43 @@
 import React from 'react';
-import useFetch from './hooks/useFetch';
+import Home from './Components/Pages/Home/Home.jsx';
 import './App.css';
 
 function App() {
-    const url = 'http://127.0.0.1:8000/v1/deck/list';
-    const { data: decks, loading, error } = useFetch(url);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
-
     return (
-        <>
-        <h1>Decks</h1>
-        {decks && decks.map((deck, index) => (
-            <div key={index}>
-            <h2>{deck.name}</h2>
-            <p>{deck.description}</p>
-            </div>
-        ))}
-        </>
+        <div className="App">
+            <header className="App-header">
+                <h1>Anki-like Application</h1>
+            </header>
+            <Home />
+        </div>
     );
 }
 
 export default App;
+
+// function App() {
+//     const url = 'http://127.0.0.1:8000/v1/deck/list';
+
+//     const {data, error, loading} = useAPI({
+//         method:'GET', 
+//         url: url, 
+//     });
+
+//     return (
+//         <>
+//         <h1>Decks</h1>
+        // {loading && <p>Loading...</p>}
+        // {error && <p>Error: {error.message}</p>}
+//         {data && (
+//             <ul>
+//             {data.map(deck => (
+//                 <li key={deck.id}>{deck.name}</li>
+//             ))}
+//             </ul>
+//         )}
+        
+//         </>
+//     );
+// }
+
+// export default App;

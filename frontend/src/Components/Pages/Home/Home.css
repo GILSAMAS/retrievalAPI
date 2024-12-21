@@ -1,0 +1,71 @@
+.home {
+    padding: 20px;
+  }
+  
+  .options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .options button {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .options button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .options button:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  .deck-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .deck-card {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    background-color: #fff;
+  }
+  
+  .deck-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-list {
+    margin-top: 30px;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+  }
+  
+  .card-front, .card-back {
+    padding: 5px;
+  }
+  
+  .card-front {
+    font-weight: bold;
+  }
+  
+  .card-back {
+    margin-top: 5px;
+  }
