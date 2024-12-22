@@ -79,38 +79,4 @@ function useAPI({ method, url, body }) {
   return { data, loading, error };
 }
     
-// function useAPI({ method, url, body }, shouldFetch) {
-//   const [data, setData] = useState(null);
-//   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     if (!shouldFetch || !url || !method) return;
-
-//     setLoading(true);
-//     setError(null);
-
-//     fetch(url, {
-//       method,
-//       body: body ? JSON.stringify(body) : null,
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//         'Access-Control-Allow-Origin': '*',
-//       },
-//     })
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then((data) => setData(data))
-//       .catch((error) => setError(error))
-//       .finally(() => setLoading(false));
-//   }, [method, url, body, shouldFetch]);
-
-//   return { data, error, loading };
-// }
-
 export default useAPI;
