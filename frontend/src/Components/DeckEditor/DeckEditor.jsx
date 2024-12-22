@@ -5,22 +5,22 @@ import './DeckEditor.css';
 function DeckEditor() {
   const [deckName, setDeckName] = useState('');
   const [deckDescription, setDeckDescription] = useState('');
-  const { data, loading, error, makeRequest } = useAPI();
-  const createDeckURL = "http://127.0.0.1:8000/v1/deck/create";
+  const [triggerAPI, setTriggerAPI] = useState(false);
+  const [createDeckURL, setDeckURL] = useState("");
+  const deckURL = "http://127.0.0.1:8000/v1/deck/create";
+  
 
-  const handleSubmit = async (e) => {
+  const { data, loading, error } = useAPI({
+    method: 'POST',
+    url: createDeckURL,
+    body: { name: deckName, description: deckDescription},
+  });
+  
+  console.log(data, loading, createDeckURL);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await makeRequest({
-      method: 'POST',
-      url: createDeckURL,
-      body: { name: deckName, description: deckDescription },
-    });
-
-    // Reset the form only if the request was successful
-    if (data && data.message) {
-      setDeckName('');
-      setDeckDescription('');
-    }
+    setDeckURL(deckURL);
   };
 
   return (
@@ -44,11 +44,7 @@ function DeckEditor() {
           placeholder="Enter deck description"
         />
       </div>
-      <button type="submit" disabled={loading}>
-        {loading ? 'Creating...' : 'Create Deck'}
-      </button>
-      {error && <p className="error">Error: {error.message}</p>}
-      {data && data.message && <p className="success">{data.message}</p>}
+      <button type="submit">Create Deck</button>
     </form>
   );
 }

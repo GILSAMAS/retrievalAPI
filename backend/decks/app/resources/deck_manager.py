@@ -2,12 +2,13 @@ from sqlmodel import Session
 from sqlmodel import select
 from app.schemas.decks import CreateDeck
 from app.models.models import Deck
-
+import uuid 
 
 class DeckManager:
 
     def create_deck(self, deck_data: CreateDeck, session: Session) -> Deck:
         deck_data_dict = deck_data.model_dump()
+        deck_data_dict["id"] = uuid.uuid4()
         deck = Deck(**deck_data_dict)
 
         session.add(deck)
