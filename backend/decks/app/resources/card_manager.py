@@ -7,6 +7,7 @@ class CardManager:
 
     def create_card(self, card_data: CreateCard, session: Session)-> Card:
         card_data_dict = card_data.model_dump()
+        card_data_dict["id"] = uuid.uuid4()
         card = Card(**card_data_dict)
         session.add(card)
         session.commit()
