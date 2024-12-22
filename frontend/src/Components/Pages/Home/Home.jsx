@@ -12,12 +12,12 @@ function Home() {
   const { data: decks, loading: decksLoading, error: decksError } = useAPI({
     url: 'http://127.0.0.1:8000/v1/deck/list',
     method: 'GET'
-  }, true);
+  });
 
   const { data: cards, loading: cardsLoading, error: cardsError } = useAPI({
     method: 'GET',
     url: selectedDeck ? `http://127.0.0.1:8000/v1/card/get_deck_cards/${selectedDeck.id}` : null
-  }, true);
+  });
 
   const handleDeckClick = (deck) => {
     setSelectedDeck(deck);
