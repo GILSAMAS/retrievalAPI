@@ -4,6 +4,7 @@ from app.db import init_db
 from app.routers.decks import deck_router
 from app.routers.cards import card_router
 
+
 def lifespan(app: FastAPI):
     print("Application startup")
     init_db()
@@ -12,7 +13,7 @@ def lifespan(app: FastAPI):
 
 version = "v1"
 app = FastAPI(version=version, lifespan=lifespan)
-origins = ['http://localhost:3000', 'http://localhost:5173']
+origins = ["http://localhost:3000", "http://localhost:5173"]
 
 app.add_middleware(
     CORSMiddleware,

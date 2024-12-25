@@ -1,5 +1,6 @@
-from pydantic import BaseModel 
+from pydantic import BaseModel
 import uuid
+
 
 class CreateCard(BaseModel):
     front: str

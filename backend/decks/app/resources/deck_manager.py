@@ -4,6 +4,7 @@ from app.schemas.decks import CreateDeck
 from app.models.models import Deck
 import uuid
 
+
 class DeckManager:
 
     def create_deck(self, deck_data: CreateDeck, session: Session) -> Deck:
@@ -20,13 +21,13 @@ class DeckManager:
         statement = select(Deck).where(Deck.name == name)
         result = session.exec(statement).first()
         return result
-    
+
     def get_all_decks(self, session: Session):
         statement = select(Deck)
         result = session.exec(statement).all()
         return result
-    
-    def delete_deck_by_name(self, name:str, session: Session):
+
+    def delete_deck_by_name(self, name: str, session: Session):
         statement = select(Deck).where(Deck.name == name)
         deck = session.exec(statement).first()
         session.delete(deck)

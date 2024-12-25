@@ -4,7 +4,8 @@ from sqlmodel import Relationship
 import uuid
 from typing import List
 from typing import Optional
-from datetime import datetime 
+from datetime import datetime
+
 
 class Card(SQLModel, table=True):
     id: uuid.UUID = Field(default=uuid.uuid4(), primary_key=True)
