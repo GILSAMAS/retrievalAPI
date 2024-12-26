@@ -1,16 +1,14 @@
-import React from 'react';
-import Home from './Components/Pages/Home/Home.jsx';
 import './App.css';
 
-function App() {
+function App({ children }) {
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Anki-like Application</h1>
-            </header>
-            <Home />
-        </div>
-    );
-}
+      <>
+        <p>Navbar</p>
+        {children}
+        <p>Footer</p>
+      </>
+    )
+  }
 
 export default App;
