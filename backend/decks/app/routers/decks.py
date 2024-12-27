@@ -50,7 +50,7 @@ async def update_deck(
     updated_deck = manager.update_deck(deck=deck, deck_data=deck_data, session=session)
 
     return updated_deck
-
+ 
 
 @deck_router.get("/get/{name}", status_code=status.HTTP_200_OK, response_model=Deck)
 async def get_deck(
@@ -73,15 +73,11 @@ async def get_all_decks(
 
 
 @deck_router.delete(
-    "/delete/{name}", status_code=status.HTTP_200_OK, response_model=Dict[str, str]
+    "/delete/{deck_id}", status_code=status.HTTP_200_OK, response_model=Dict[str, str]
 )
-async def delete_deck(
-    name: str,
-    session: Session = Depends(get_session),
-    manager: DeckManager = Depends(DeckManager),
-):
-    deck = manager.get_deck_by_name(name=name, session=session)
+async def delete_deck(deck_id: uuid.UUID, session: Session = Depends(get_session), manager: DeckManager = Depends(DeckManager)):
+    deck = manager.get_deck_by_id(deck_id=deck_id, session=session)
     if not deck:
         raise HTTPException(status_code=404, detail="Deck not found")
-    manager.delete_deck_by_name(name=name, session=session)
+    manager.delete_deck(deck=deck, session=session)
     return {"message": "Deck deleted"}

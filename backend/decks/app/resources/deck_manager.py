@@ -40,9 +40,7 @@ class DeckManager:
         session.refresh(deck)
         return deck
 
-    def delete_deck_by_name(self, name: str, session: Session):
-        statement = select(Deck).where(Deck.name == name)
-        deck = session.exec(statement).first()
+    def delete_deck(self,deck:Deck, session: Session):
         session.delete(deck)
         session.commit()
         return {"message": "Deck deleted"}
