@@ -20,7 +20,7 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <div className="dashboard-content">
-        {selectedDeck ? (
+        {selectedOption === 'Decks' && selectedDeck ? (
           <>
             <div className="top-section">
               <div className="main-content">
@@ -30,6 +30,11 @@ function Dashboard() {
             </div>
             <DeckPerformance />
           </>
+        ) : selectedOption === 'Stats' ? (
+          <div className="stats-content">
+            <h2>Stats</h2>
+            <p>Stats content goes here.</p>
+          </div>
         ) : (
           <div className="default-content">
             <div className="search-bar">
