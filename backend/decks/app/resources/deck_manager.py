@@ -22,10 +22,23 @@ class DeckManager:
         result = session.exec(statement).first()
         return result
 
+    def get_deck_by_id(self, deck_id: uuid, session: Session)-> Deck:
+        statement = select(Deck).where(Deck.id == deck_id)
+        result = session.exec(statement).first()
+        return result
+    
     def get_all_decks(self, session: Session):
         statement = select(Deck)
         result = session.exec(statement).all()
         return result
+
+    def update_deck(self, deck: Deck, deck_data: CreateDeck, session: Session)-> Deck:
+        deck.name = deck_data.name
+        deck.description = deck_data.description
+        session.add(deck)
+        session.commit()
+        session.refresh(deck)
+        return deck
 
     def delete_deck_by_name(self, name: str, session: Session):
         statement = select(Deck).where(Deck.name == name)

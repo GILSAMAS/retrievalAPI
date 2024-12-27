@@ -9,6 +9,7 @@ from app.resources.deck_manager import DeckManager
 from app.schemas.decks import CreateDeck
 from typing import List
 from typing import Dict
+import uuid
 
 deck_router = APIRouter()
 
@@ -26,6 +27,29 @@ async def create_deck(
 
     deck = manager.create_deck(deck_data, session)
     return deck
+
+
+@deck_router.put(
+    "/update/{deck_id}", status_code=status.HTTP_200_OK, response_model=Deck
+)
+async def update_deck(
+    deck_id: uuid.UUID,
+    deck_data: CreateDeck,
+    session: Session = Depends(get_session),
+    manager: DeckManager = Depends(DeckManager),
+):
+    deck = manager.get_deck_by_id(deck_id=deck_id, session=session)
+    if not deck:
+        raise HTTPException(status_code=404, detail="Deck not found")
+    
+    if deck_data.name != deck.name:
+        deck = manager.get_deck_by_name(name=deck_data.name, session=session)
+        if deck:
+            raise HTTPException(status_code=400, detail=f"Deck with the name: '{deck_data.name}' already exists")
+
+    updated_deck = manager.update_deck(deck=deck, deck_data=deck_data, session=session)
+
+    return updated_deck
 
 
 @deck_router.get("/get/{name}", status_code=status.HTTP_200_OK, response_model=Deck)
