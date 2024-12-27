@@ -1,0 +1,30 @@
+.cards-section {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .cards-section h4 {
+    margin-bottom: 10px;
+  }
+  
+  .cards-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cards-section ul li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .card-front {
+    font-weight: bold;
+  }
+  
+  .card-back {
+    margin-top: 5px;
+  }

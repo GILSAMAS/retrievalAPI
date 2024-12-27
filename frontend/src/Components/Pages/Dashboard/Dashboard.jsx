@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../../AppContextProvider.jsx';
+import DeckMetadata from './DeckMetadata/DeckMetadata';
+import CardList from './CardList/CardList';
+import DeckPerformance from './DeckPerformance/DeckPerformance';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -21,40 +24,11 @@ function Dashboard() {
           <>
             <div className="top-section">
               <div className="main-content">
-                <div className="deck-details">
-                  <div className="deck-metadata">
-                    <div className="deck-info">
-                      <h2>{selectedDeck.name}</h2>
-                      <p>{selectedDeck.description}</p>
-                      <p>Tags: {selectedDeck.tags.join(', ')}</p>
-                      <p>Created on: {selectedDeck.creationDate}</p>
-                      <p>Last updated: {selectedDeck.lastUpdated}</p>
-                    </div>
-                    <div className="deck-actions">
-                      <button>Rename</button>
-                      <button>Study Now</button>
-                      <button>Add New Card</button>
-                      <button>Delete</button>
-                    </div>
-                  </div>
-                </div>
+                <DeckMetadata selectedDeck={selectedDeck} />
               </div>
-              <div className="cards-section">
-                <h4>Cards in {selectedDeck.name}</h4>
-                <ul>
-                  {cards.map(card => (
-                    <li key={card.id}>
-                      <div className="card-front">{card.front}</div>
-                      <div className="card-back">{card.back}</div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <CardList cards={cards} selectedDeck={selectedDeck} />
             </div>
-            <div className="bottom-section">
-              <h3>Score Over Time</h3>
-              <div className="chart-placeholder">[Chart]</div>
-            </div>
+            <DeckPerformance />
           </>
         ) : (
           <div className="default-content">
