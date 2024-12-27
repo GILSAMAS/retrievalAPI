@@ -1,0 +1,30 @@
+.card {
+    padding: 10px;
+    border: 1px 0 #ccc;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .card-front {
+    font-weight: bold;
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .card-actions button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .card-actions button:hover {
+    background-color: #0056b3;
+  }

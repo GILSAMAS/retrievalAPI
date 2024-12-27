@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from '../Card/Card';
 import './CardList.css';
 
 function CardList({ cards, selectedDeck }) {
@@ -8,8 +9,7 @@ function CardList({ cards, selectedDeck }) {
       <ul>
         {cards.map(card => (
           <li key={card.id}>
-            <div className="card-front">{card.front}</div>
-            <div className="card-back">{card.back}</div>
+            <Card card={card} />
           </li>
         ))}
       </ul>
