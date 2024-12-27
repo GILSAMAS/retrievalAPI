@@ -41,16 +41,19 @@ async def update_deck(
     deck = manager.get_deck_by_id(deck_id=deck_id, session=session)
     if not deck:
         raise HTTPException(status_code=404, detail="Deck not found")
-    
+
     if deck_data.name != deck.name:
         deck = manager.get_deck_by_name(name=deck_data.name, session=session)
         if deck:
-            raise HTTPException(status_code=400, detail=f"Deck with the name: '{deck_data.name}' already exists")
+            raise HTTPException(
+                status_code=400,
+                detail=f"Deck with the name: '{deck_data.name}' already exists",
+            )
 
     updated_deck = manager.update_deck(deck=deck, deck_data=deck_data, session=session)
 
     return updated_deck
- 
+
 
 @deck_router.get("/get/{name}", status_code=status.HTTP_200_OK, response_model=Deck)
 async def get_deck(
@@ -75,7 +78,11 @@ async def get_all_decks(
 @deck_router.delete(
     "/delete/{deck_id}", status_code=status.HTTP_200_OK, response_model=Dict[str, str]
 )
-async def delete_deck(deck_id: uuid.UUID, session: Session = Depends(get_session), manager: DeckManager = Depends(DeckManager)):
+async def delete_deck(
+    deck_id: uuid.UUID,
+    session: Session = Depends(get_session),
+    manager: DeckManager = Depends(DeckManager),
+):
     deck = manager.get_deck_by_id(deck_id=deck_id, session=session)
     if not deck:
         raise HTTPException(status_code=404, detail="Deck not found")

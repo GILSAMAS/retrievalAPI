@@ -22,17 +22,17 @@ class DeckManager:
         result = session.exec(statement).first()
         return result
 
-    def get_deck_by_id(self, deck_id: uuid, session: Session)-> Deck:
+    def get_deck_by_id(self, deck_id: uuid, session: Session) -> Deck:
         statement = select(Deck).where(Deck.id == deck_id)
         result = session.exec(statement).first()
         return result
-    
+
     def get_all_decks(self, session: Session):
         statement = select(Deck)
         result = session.exec(statement).all()
         return result
 
-    def update_deck(self, deck: Deck, deck_data: CreateDeck, session: Session)-> Deck:
+    def update_deck(self, deck: Deck, deck_data: CreateDeck, session: Session) -> Deck:
         deck.name = deck_data.name
         deck.description = deck_data.description
         session.add(deck)
@@ -40,7 +40,7 @@ class DeckManager:
         session.refresh(deck)
         return deck
 
-    def delete_deck(self,deck:Deck, session: Session):
+    def delete_deck(self, deck: Deck, session: Session):
         session.delete(deck)
         session.commit()
         return {"message": "Deck deleted"}
