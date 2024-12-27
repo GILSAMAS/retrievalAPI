@@ -1,11 +1,13 @@
 import App from "./App";
 import AppRouter from "./AppRouter";
-
+import { AppProvider } from "./AppContextProvider";
 function AppHookContainer() {
     return (
-        <App>
-            <AppRouter />
-        </App>
+        <AppProvider>
+            <App>
+                <AppRouter />
+            </App>
+        </AppProvider>
     );
 }
 

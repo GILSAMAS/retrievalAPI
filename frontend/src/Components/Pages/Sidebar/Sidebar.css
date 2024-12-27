@@ -1,30 +1,85 @@
 .sidebar {
-    width: 200px;
-    background-color: #f0f0f0;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sidebar h2 {
-    margin-top: 0;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .sidebar ul li.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .sidebar ul li:hover {
-    background-color: #0056b3;
-    color: white;
-  }
+width: 200px;
+background-color: #f0f0f0;
+padding: 20px;
+box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+margin-top: 0;
+}
+
+.sidebar ul {
+list-style-type: none;
+padding: 0;
+}
+
+.sidebar ul li {
+padding: 10px;
+cursor: pointer;
+}
+
+.sidebar ul li.active {
+background-color: #007bff;
+color: white;
+}
+
+.sidebar ul li:hover {
+background-color: #0056b3;
+color: white;
+}
+
+.accordion-content {
+list-style-type: none;
+padding: 0;
+margin-top: 10px;
+margin-left: 20px;
+}
+
+.accordion-content li {
+padding: 10px;
+cursor: pointer;
+border: 1px solid #ccc;
+border-radius: 4px;
+margin-bottom: 5px;
+background-color: #fff;
+}
+
+.accordion-content li.active {
+background-color: #007bff;
+color: white;
+}
+
+.accordion-content li:hover {
+background-color: #0056b3;
+color: white;
+}
+
+.cards-section {
+margin-top: 20px;
+}
+
+.cards-section h4 {
+margin-bottom: 10px;
+}
+
+.cards-section ul {
+list-style-type: none;
+padding: 0;
+}
+
+.cards-section ul li {
+padding: 10px;
+border: 1px solid #ccc;
+margin-bottom: 10px;
+border-radius: 4px;
+background-color: #fff;
+}
+
+.card-front {
+font-weight: bold;
+}
+
+.card-back {
+margin-top: 5px;
+}
