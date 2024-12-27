@@ -1,9 +1,9 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw; /* Add this line to make the element take the full width of the window */
+}
   .dashboard-content {
     display: flex;
     flex-direction: column;
