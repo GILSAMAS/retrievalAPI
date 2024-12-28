@@ -57,6 +57,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
+          working-directory: ./backend/decks
           name: python-app
 
       - name: Unzip artifact for deployment
